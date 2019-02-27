@@ -12,7 +12,7 @@ class DicesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = Theme.main.colors.primaryColor
         title = "Dices"
     }
 }

@@ -14,6 +14,7 @@
 		0ADD56E92226F53A00CFCBAC /* DiceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56E82226F53A00CFCBAC /* DiceSet.swift */; };
 		0ADD56EC2226F75700CFCBAC /* DicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56EA2226F75700CFCBAC /* DicesViewController.swift */; };
 		0ADD56ED2226F75700CFCBAC /* DicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD56EB2226F75700CFCBAC /* DicesViewController.xib */; };
+		0ADD56FC2226FC4D00CFCBAC /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56FB2226FC4D00CFCBAC /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0ADD56E82226F53A00CFCBAC /* DiceSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceSet.swift; sourceTree = "<group>"; };
 		0ADD56EA2226F75700CFCBAC /* DicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicesViewController.swift; sourceTree = "<group>"; };
 		0ADD56EB2226F75700CFCBAC /* DicesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DicesViewController.xib; sourceTree = "<group>"; };
+		0ADD56FB2226FC4D00CFCBAC /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				0ADD56DD2226F02F00CFCBAC /* Scenes */,
+				0ADD56FA2226FC3E00CFCBAC /* Utils */,
 				0ADD56DC2226EF6A00CFCBAC /* Core */,
 			);
 			path = Sources;
@@ -132,6 +135,14 @@
 				0ADD56EB2226F75700CFCBAC /* DicesViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0ADD56FA2226FC3E00CFCBAC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0ADD56FB2226FC4D00CFCBAC /* Theme.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +218,7 @@
 			files = (
 				0ADD56C92226EEE400CFCBAC /* AppDelegate.swift in Sources */,
 				0ADD56E92226F53A00CFCBAC /* DiceSet.swift in Sources */,
+				0ADD56FC2226FC4D00CFCBAC /* Theme.swift in Sources */,
 				0ADD56E72226F3BA00CFCBAC /* Dice.swift in Sources */,
 				0ADD56EC2226F75700CFCBAC /* DicesViewController.swift in Sources */,
 			);

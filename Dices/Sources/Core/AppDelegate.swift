@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func createNavigationVC() -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.navigationBar.barStyle = .black
-        navigationController.navigationBar.barTintColor = .black
+        navigationController.navigationBar.barTintColor = Theme.main.colors.primaryColor
         navigationController.navigationBar.prefersLargeTitles = true
         return navigationController
     }
