@@ -10,17 +10,18 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-private enum Constants {
-    static let textSize: CGFloat = 30
-}
-
 class DicesViewController: UIViewController {
 
+    private enum Constants {
+        static let textSize: CGFloat = 30
+        static let topInset: CGFloat = 16
+    }
+    
     @IBOutlet weak var diceTypeLabel: UILabel!
     @IBOutlet weak var diceTypeField: UITextField!
     @IBOutlet weak var diceQuantityLabel: UILabel!
     @IBOutlet weak var diceQuantityField: UITextField!
-    @IBOutlet weak var rollButton: UIButton!
+    @IBOutlet weak var separatorView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     private lazy var diceTypePicker: UIPickerView = {
@@ -32,6 +33,7 @@ class DicesViewController: UIViewController {
     
     private let viewModel: DicesViewModel
     private let disposeBag: DisposeBag = DisposeBag()
+    private let diceRollCellId = String(describing: DiceRollCollectionViewCell.self)
     
     init(viewModel: DicesViewModel) {
         self.viewModel = viewModel
@@ -84,7 +86,7 @@ extension DicesViewController {
     private func bindOutput() {
         diceTypePicker.rx.itemSelected
             .do(onNext: { [weak self] _ in
-                self?.diceTypeField.endEditing(true)
+                self?.diceTypeField.resignFirstResponder()
             })
             .map { [unowned self] in
                 self.viewModel.diceProvider.dices[$0.row]}
@@ -93,24 +95,18 @@ extension DicesViewController {
         
         diceQuantityPicker.rx.itemSelected
             .do(onNext: { [weak self] _ in
-                self?.diceQuantityField.endEditing(true)
+                self?.diceQuantityField.resignFirstResponder()
             })
             .map { [unowned self] in
                 self.viewModel.dicesQuantityArray[$0.row] }
             .bind(to: viewModel.selectedQuantity)
             .disposed(by: disposeBag)
         
-        let rollTrigger = Observable.combineLatest(
-                rollButton.rx.tap,
-                viewModel.selectedDice.asObservable(),
-                viewModel.selectedQuantity.asObservable())
-
-        rollTrigger
-            .asDriver(onErrorJustReturn: ((), Dice(sides: 6), 1))
-            .drive(onNext: { (_, dice, quantity) in
-                print(quantity)
-            })
-            .disposed(by: disposeBag)
+        viewModel.rollResults
+            .bind(to: collectionView.rx.items(cellIdentifier: diceRollCellId, cellType: DiceRollCollectionViewCell.self)) { row, data, cell in
+                cell.titleLabel.text = "\(data)"
+            }
+        .disposed(by: disposeBag)
     }
     
 }
@@ -121,41 +117,73 @@ extension DicesViewController {
     private func setupUI() {
         title = "Dices"
         view.backgroundColor = Theme.main.colors.primaryColor
+        setupCollectionView()
         setupLabels()
         setupTextFields()
-        setupButtons()
+        setupSeparator()
+    }
+    
+    private func setupCollectionView() {
+        collectionView.contentInset = UIEdgeInsets(top: Constants.topInset, left: 0, bottom: 0, right: 0)
+        collectionView.keyboardDismissMode = .onDrag
+        collectionView.register(DiceRollCollectionViewCell.self, forCellWithReuseIdentifier: diceRollCellId)
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
     
     private func setupLabels() {
-        diceTypeLabel.text = "Dice type"
+        diceTypeLabel.text = "Type"
         diceTypeLabel.textColor = Theme.main.colors.primaryTextColor
-        diceQuantityLabel.text = "Dice quantity"
+        diceTypeLabel.isUserInteractionEnabled = true
+        let diceTypeGesture = UITapGestureRecognizer(target: self, action: #selector(focusDiceTypeField))
+        diceTypeLabel.addGestureRecognizer(diceTypeGesture)
+
+        diceQuantityLabel.text = "Quantity"
         diceQuantityLabel.textColor = Theme.main.colors.primaryTextColor
+        diceQuantityLabel.isUserInteractionEnabled = true
+        let diceQuantityGesture = UITapGestureRecognizer(target: self, action: #selector(focusDiceQuantityField))
+        diceQuantityLabel.addGestureRecognizer(diceQuantityGesture)
+    }
+    
+    @objc private func focusDiceTypeField() {
+        diceTypeField.becomeFirstResponder()
+    }
+    
+    @objc private func focusDiceQuantityField() {
+        diceQuantityField.becomeFirstResponder()
     }
     
     private func setupTextFields() {
-        diceTypeField.defaultSetup()
+        setupTextField(diceTypeField)
+        setupTextField(diceQuantityField)
         diceTypeField.inputView = diceTypePicker
-        diceQuantityField.defaultSetup()
         diceQuantityField.inputView = diceQuantityPicker
     }
     
-    private func setupButtons() {
-        rollButton.setTitle("Roll!", for: .normal)
-        rollButton.setTitleColor(Theme.main.colors.primaryTextColor, for: .normal)
-        rollButton.titleLabel?.font = UIFont.systemFont(ofSize: Constants.textSize)
+    private func setupTextField(_ textField: UITextField) {
+        textField.borderStyle = .none
+        textField.textColor = Theme.main.colors.primaryTextColor
+        textField.tintColor = Theme.main.colors.primaryTextColor
+        textField.font = UIFont.systemFont(ofSize: Constants.textSize)
+        textField.textAlignment = .right
+        textField.returnKeyType = .done
+    }
+    
+    private func setupSeparator() {
+        separatorView.backgroundColor = Theme.main.colors.secondaryColor
     }
     
 }
 
-private extension UITextField {
+//MARK: - UICollectionViewDelegateFlowLayout
+extension DicesViewController: UICollectionViewDelegateFlowLayout {
     
-    func defaultSetup() {
-        borderStyle = .none
-        textColor = Theme.main.colors.primaryTextColor
-        font = UIFont.systemFont(ofSize: Constants.textSize)
-        textAlignment = .right
-        returnKeyType = .done
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = collectionView.bounds.width / 3
+        return CGSize(width: cellWidth, height: cellWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
     }
     
 }

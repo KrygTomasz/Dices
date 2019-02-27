@@ -33,6 +33,7 @@ protocol DicesViewModel {
     
     var selectedDice: PublishRelay<Dice> { get }
     var selectedQuantity: PublishRelay<Int> { get }
+    var rollResults: Observable<[Int]> { get }
 }
 
 class DicesViewModelImpl: DicesViewModel {
@@ -44,12 +45,25 @@ class DicesViewModelImpl: DicesViewModel {
 
     var selectedDice: PublishRelay<Dice> = PublishRelay()
     var selectedQuantity: PublishRelay<Int> = PublishRelay()
+    var rollResults: Observable<[Int]> {
+        return Observable.combineLatest(self.selectedDice, self.selectedQuantity)
+            .asObservable()
+            .map { (dice, quantity) -> [Int] in
+                var rolls: [Int] = []
+                for _ in 0..<quantity {
+                    rolls.append(dice.roll())
+                }
+                return rolls
+            }
+    }
+    
     
     private var dicesQuantity: Int
     
     init(diceProvider: DiceProvider, dicesQuantity: Int) {
         self.diceProvider = diceProvider
         self.dicesQuantity = dicesQuantity
+
     }
     
 }
