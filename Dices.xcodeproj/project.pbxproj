@@ -10,6 +10,8 @@
 		0ADD56C92226EEE400CFCBAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56C82226EEE400CFCBAC /* AppDelegate.swift */; };
 		0ADD56D02226EEE500CFCBAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD56CF2226EEE500CFCBAC /* Assets.xcassets */; };
 		0ADD56D32226EEE500CFCBAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD56D12226EEE500CFCBAC /* LaunchScreen.storyboard */; };
+		0ADD56E72226F3BA00CFCBAC /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56E62226F3BA00CFCBAC /* Dice.swift */; };
+		0ADD56E92226F53A00CFCBAC /* DiceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56E82226F53A00CFCBAC /* DiceSet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		0ADD56CF2226EEE500CFCBAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ADD56D22226EEE500CFCBAC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ADD56D42226EEE500CFCBAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0ADD56E62226F3BA00CFCBAC /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
+		0ADD56E82226F53A00CFCBAC /* DiceSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceSet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 		0ADD56E02226F05300CFCBAC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0ADD56E62226F3BA00CFCBAC /* Dice.swift */,
+				0ADD56E82226F53A00CFCBAC /* DiceSet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +199,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0ADD56C92226EEE400CFCBAC /* AppDelegate.swift in Sources */,
+				0ADD56E92226F53A00CFCBAC /* DiceSet.swift in Sources */,
+				0ADD56E72226F3BA00CFCBAC /* Dice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
