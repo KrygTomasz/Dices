@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         let navigationController = createNavigationVC()
         window?.rootViewController = navigationController
-        let dicesVC = DicesViewController()
+        let viewModel = DicesViewModelImpl(diceProvider: DiceProviderImpl(), dicesQuantity: 12)
+        let dicesVC = DicesViewController(viewModel: viewModel)
         navigationController.pushViewController(dicesVC, animated: true)
         window?.makeKeyAndVisible()
         
