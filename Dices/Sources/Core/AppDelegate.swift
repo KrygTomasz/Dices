@@ -16,10 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow()
-        window?.rootViewController = UINavigationController()
+        let navigationController = createNavigationVC()
+        window?.rootViewController = navigationController
+        let dicesVC = DicesViewController()
+        navigationController.pushViewController(dicesVC, animated: true)
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    private func createNavigationVC() -> UINavigationController {
+        let navigationController = UINavigationController()
+        navigationController.navigationBar.barStyle = .black
+        navigationController.navigationBar.barTintColor = .black
+        navigationController.navigationBar.prefersLargeTitles = true
+        return navigationController
     }
 
 }

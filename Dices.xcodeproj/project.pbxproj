@@ -12,6 +12,8 @@
 		0ADD56D32226EEE500CFCBAC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD56D12226EEE500CFCBAC /* LaunchScreen.storyboard */; };
 		0ADD56E72226F3BA00CFCBAC /* Dice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56E62226F3BA00CFCBAC /* Dice.swift */; };
 		0ADD56E92226F53A00CFCBAC /* DiceSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56E82226F53A00CFCBAC /* DiceSet.swift */; };
+		0ADD56EC2226F75700CFCBAC /* DicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD56EA2226F75700CFCBAC /* DicesViewController.swift */; };
+		0ADD56ED2226F75700CFCBAC /* DicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD56EB2226F75700CFCBAC /* DicesViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		0ADD56D42226EEE500CFCBAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0ADD56E62226F3BA00CFCBAC /* Dice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dice.swift; sourceTree = "<group>"; };
 		0ADD56E82226F53A00CFCBAC /* DiceSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceSet.swift; sourceTree = "<group>"; };
+		0ADD56EA2226F75700CFCBAC /* DicesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicesViewController.swift; sourceTree = "<group>"; };
+		0ADD56EB2226F75700CFCBAC /* DicesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DicesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,8 @@
 		0ADD56E12226F05700CFCBAC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0ADD56EA2226F75700CFCBAC /* DicesViewController.swift */,
+				0ADD56EB2226F75700CFCBAC /* DicesViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -188,6 +194,7 @@
 			files = (
 				0ADD56D32226EEE500CFCBAC /* LaunchScreen.storyboard in Resources */,
 				0ADD56D02226EEE500CFCBAC /* Assets.xcassets in Resources */,
+				0ADD56ED2226F75700CFCBAC /* DicesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +208,7 @@
 				0ADD56C92226EEE400CFCBAC /* AppDelegate.swift in Sources */,
 				0ADD56E92226F53A00CFCBAC /* DiceSet.swift in Sources */,
 				0ADD56E72226F3BA00CFCBAC /* Dice.swift in Sources */,
+				0ADD56EC2226F75700CFCBAC /* DicesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
